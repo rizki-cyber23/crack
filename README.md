@@ -13,7 +13,7 @@
 
 ### Download&Install
 
-### git clone https://github.com/Cyber-Dark\Cyber.py
+### git clone https://github.com/rizki-Cyber23\Crack
    
 ### cd Crack
 
