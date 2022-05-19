@@ -13,7 +13,7 @@
 
 ### Download&Install
 
-### git clone https://github.com/Ha3MrX/facebook-cracker
+### git clone https://github.com/rizki-cyber23/crack/blob/3103a1013be770b7f226701790a0bcc62f599dfe/Cyber.py
    
 ### cd facebook-cracker
 
