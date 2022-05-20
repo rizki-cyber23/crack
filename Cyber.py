@@ -29,7 +29,8 @@ def main():
 	br.set_cookiejar(cj)
 	br.set_handle_equiv(True)
 	br.set_handle_referer(True)
-	br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+
+br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 	welcome()
 	search()
 	print("Password does not exist in the wordlist")
@@ -68,8 +69,8 @@ def welcome():
         |..........   Facebook Crack   ...........|
         +-----------------------------------------+
         |            #Author: Cyber-Dark          | 
-        |	       Version 1.0                |
- 	|   https://github.com\rizki-Cyber23      |
+        |	       Version 1.0                      |
+ 	       |   #by : Cyber-Dark™      |
         +=========================================+
         |..........  Facebook Cracker  ...........|
         +-----------------------------------------+\n\n
